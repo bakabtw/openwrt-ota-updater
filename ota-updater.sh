@@ -81,6 +81,7 @@ main() {
             exit 1
         fi
 
+        # Updating firmware
         sysupgrade -c -v $download_path || (echo "ERROR - Sysupgrade failed. Please check logs.")
     else
         echo "No updates available. Current version: $current_version"
