@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 current_version=1.0
 update_server_url="http://localhost:8000/check_updates"
@@ -7,13 +7,23 @@ check_for_updates() {
     local current_version=$1
     local update_server_url=$2
 
-    response=$(wget -q -O - "$update_server_url")
-    latest_version=$(echo "$response" | jq -r '.version')
+    updates_file="/tmp/check_updates.txt"
+
+    wget -q -O "$updates_file" "$update_server_url" || rm -f $updates_file
+
+    if [ -f "$updates_file" ]; then
+        source "/tmp/check_updates.txt"
+    else
+        echo "Couldn't access the update server!"
+        exit 1
+    fi
+
+    latest_version=$version
     
     if [[ -n "$latest_version" && "$latest_version" > "$current_version" ]]; then
         update_available=true
-        download_url=$(echo "$response" | jq -r '.download_url')
-        expected_sha1=$(echo "$response" | jq -r '.sha1_hash')
+        download_url=$download_url
+        expected_sha1=$sha1_hash
     else
         update_available=false
         latest_version=$current_version
@@ -66,4 +76,5 @@ main() {
 
 # TODO: firmware sysupgrade
 # TODO: installation
+# TODO: check root
 main
