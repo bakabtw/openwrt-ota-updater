@@ -12,7 +12,7 @@ check_for_updates() {
     wget -q -O "$updates_file" "$update_server_url" || rm -f $updates_file
 
     if [ -f "$updates_file" ]; then
-        source "/tmp/check_updates.txt"
+        source "$updates_file"
         echo "INFO - Accessing the update server..."
     else
         echo "ERROR - Couldn't access the update server!"
