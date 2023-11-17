@@ -54,7 +54,7 @@ download_update() {
     local download_url=$1
     local destination_path=$2
 
-    wget -q -O "$destination_path" "$download_url" || echo "ERROR - Downloading firmware was not successful" && exit 1
+    wget -q -O "$destination_path" "$download_url" || (echo "ERROR - Downloading firmware was not successful" && exit 1)
 }
 
 main() {
