@@ -48,7 +48,7 @@ download_update() {
     local download_url=$1
     local destination_path=$2
 
-    wget -q -O "$destination_path" "$download_url"
+    wget -q -O "$destination_path" "$download_url" || echo "Error downloading update!" && exit 1
 }
 
 main() {
