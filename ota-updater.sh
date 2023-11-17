@@ -13,14 +13,14 @@ check_for_updates() {
 
     if [ -f "$updates_file" ]; then
         source "/tmp/check_updates.txt"
-        echo "Accessing the update server..."
+        echo "INFO - Accessing the update server..."
     else
-        echo "Error! Couldn't access the update server!"
+        echo "ERROR - Couldn't access the update server!"
         exit 1
     fi
 
     if ! [[ -n "$version" && -n "$download_url" && -n "$sha1_hash" ]]; then
-        echo "Incorrect response from the server: provided data is incorrect"
+        echo "ERROR - Incorrect response from the server: provided data is incorrect"
         exit 1
     else
         latest_version=$version
@@ -54,7 +54,7 @@ download_update() {
     local download_url=$1
     local destination_path=$2
 
-    wget -q -O "$destination_path" "$download_url" || echo "Error downloading update!" && exit 1
+    wget -q -O "$destination_path" "$download_url" || echo "ERROR - Downloading firmware was not successful" && exit 1
 }
 
 main() {
@@ -70,7 +70,7 @@ main() {
         if check_sha1 "$download_path" "$expected_sha1"; then
             echo "Checking firmware integrity: OK"
         else
-            echo "Checking firmware integrity: FAIL"
+            echo "ERROR - Checking firmware integrity: FAIL"
             echo "Expected SHA1: $expected_sha1"
             echo "Actual SHA1: $(calculate_sha1 "$download_path")"
             exit 1
