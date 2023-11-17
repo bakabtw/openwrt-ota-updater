@@ -1,2 +1,2 @@
 # Crontab file for launching OTA updater
-0 1 * * * python3 /usr/bin/ota-updater.py &> /var/log/ota-updater.log
+0 1 * * * /usr/bin/ota-updater.sh &> /var/log/ota-updater.log
