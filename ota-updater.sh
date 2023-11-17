@@ -13,14 +13,20 @@ check_for_updates() {
 
     if [ -f "$updates_file" ]; then
         source "/tmp/check_updates.txt"
+        echo "Accessing the update server..."
     else
-        echo "Couldn't access the update server!"
+        echo "Error! Couldn't access the update server!"
         exit 1
     fi
 
-    latest_version=$version
+    if ! [[ -n "$version" && -n "$download_url" && -n "$sha1_hash" ]]; then
+        echo "Incorrect response from the server: provided data is incorrect"
+        exit 1
+    else
+        latest_version=$version
+    fi
     
-    if [[ -n "$latest_version" && "$latest_version" > "$current_version" ]]; then
+    if [[ "$latest_version" > "$current_version" ]]; then
         update_available=true
         download_url=$download_url
         expected_sha1=$sha1_hash
