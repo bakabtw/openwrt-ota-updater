@@ -58,6 +58,11 @@ download_update() {
 }
 
 main() {
+    if [ "$EUID" -ne 0 ]; then
+        echo "The OTA updater script should be run with root priviledges!"
+        exit
+    fi
+
     check_for_updates "$current_version" "$update_server_url"
 
     if $update_available; then
@@ -82,5 +87,4 @@ main() {
 
 # TODO: firmware sysupgrade
 # TODO: installation
-# TODO: check root
 main
