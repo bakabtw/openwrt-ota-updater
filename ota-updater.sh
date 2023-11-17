@@ -1,13 +1,13 @@
 #!/bin/sh
 
 current_version=1.0
-update_server_url="http://localhost:8000/update_info.json"
+update_server_url="http://localhost:8000/check_updates"
 
 check_for_updates() {
     local current_version=$1
     local update_server_url=$2
 
-    response=$(curl -s "$update_server_url")
+    response=$(wget -q -O - "$update_server_url")
     latest_version=$(echo "$response" | jq -r '.version')
     
     if [[ -n "$latest_version" && "$latest_version" > "$current_version" ]]; then
@@ -38,7 +38,7 @@ download_update() {
     local download_url=$1
     local destination_path=$2
 
-    wget -O "$destination_path" "$download_url"
+    wget -q -O "$destination_path" "$download_url"
 }
 
 main() {
