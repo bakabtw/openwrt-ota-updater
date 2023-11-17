@@ -80,11 +80,11 @@ main() {
             echo "Actual SHA1: $(calculate_sha1 "$download_path")"
             exit 1
         fi
+
+        sysupgrade -c -v $download_path || (echo "ERROR - Sysupgrade failed. Please check logs.")
     else
         echo "No updates available. Current version: $current_version"
     fi
 }
 
-# TODO: firmware sysupgrade
-# TODO: installation
 main
