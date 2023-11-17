@@ -1,6 +1,6 @@
 #!/bin/bash
 
-current_version=1.0
+current_version=1
 update_server_url="http://localhost:8000/check_updates"
 
 check_for_updates() {
