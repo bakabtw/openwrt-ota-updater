@@ -38,7 +38,7 @@ download_update() {
     local download_url=$1
     local destination_path=$2
 
-    curl -o "$destination_path" -L "$download_url"
+    wget -O "$destination_path" "$download_url"
 }
 
 main() {
