@@ -1,6 +1,6 @@
 #!/bin/bash
 
-current_version=1
+current_version=7
 update_server_url="https://raw.githubusercontent.com/bakabtw/openwrt-ota-updater/main/server/check_updates"
 
 check_for_updates() {
