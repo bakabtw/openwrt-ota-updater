@@ -14,6 +14,6 @@ sha1_hash="da39a3ee5e6b4b0d3255bfef95601890afd80709"
 ```
 
 # Limitations
-**Version number should be an integer (e.g 1, 2, 3)!**
-
-Version number like 1.0 or 1.0.1 are NOT SUPPORTED.
+ - **Version number should be an integer (e.g 1, 2, 3)!** Version number like 1.0 or 1.0.1 are NOT SUPPORTED.
+ - For `download_url`, only **http** and **ftp** protocols are supported.
+ 
