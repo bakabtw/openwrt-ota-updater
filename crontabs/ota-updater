@@ -1,2 +1,0 @@
-# Crontab file for launching OTA updater
-0 1 * * * /usr/bin/ota-updater.sh &> /var/log/ota-updater.log
