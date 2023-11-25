@@ -54,7 +54,9 @@ download_update() {
     local download_url=$1
     local destination_path=$2
 
-    wget -q -O "$destination_path" "$download_url" || (echo "ERROR - Downloading firmware was not successful" && exit 1)
+    echo "INFO - Downloading update..."
+
+    wget -O "$destination_path" "$download_url" || (echo "ERROR - Downloading firmware was not successful" && exit 1)
 }
 
 main() {
@@ -67,7 +69,7 @@ main() {
 
     if $update_available; then
         echo "Update available! Current version: $current_version, Latest version: $latest_version"
-        download_folder="/tmp/"
+        download_folder="/tmp"
         download_path="$download_folder/ota-firmware-update.bin"
         download_update "$download_url" "$download_path"
 
@@ -82,7 +84,7 @@ main() {
         fi
 
         # Updating firmware
-        sysupgrade -c -v $download_path || (echo "ERROR - Sysupgrade failed. Please check logs.")
+        sysupgrade -c -v $download_path &
     else
         echo "No updates available. Current version: $current_version"
     fi
