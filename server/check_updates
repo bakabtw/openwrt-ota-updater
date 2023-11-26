@@ -1,3 +1,3 @@
 version=99
-download_url="http://payload.network:8000/openwrt-23.05.0-ramips-mt76x8-xiaomi_mi-router-4c-squashfs-sysupgrade-v10.bin"
-sha1_hash="aee6b65137cf944a2b418822e0ad226da7ecbb09"
+download_url="https://files.payload.network/openwrt/firmware/openwrt-23.05.0-ramips-mt76x8-xiaomi_mi-router-4c-squashfs-sysupgrade-v1.bin"
+sha1_hash="0ee37a11c695931637a21b6e2c54db1c3c69aca0"
